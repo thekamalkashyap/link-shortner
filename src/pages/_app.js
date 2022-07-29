@@ -16,10 +16,6 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="Url shortner using nextjs, tailwind, typescript and firebase"
         />
-        <meta
-          name="keywords"
-          content="url shortner, firebase ,  link shortner, Javascript, AOS, React, Nextjs , Portfolio, Creative developer"
-        />
         <meta name="author" content="kamal kashyap" />
       </Head>
       <AuthProvider>

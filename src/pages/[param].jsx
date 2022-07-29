@@ -1,35 +1,50 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { database } from '../../firebase';
-import { collection, query, where, limit, getDocs } from 'firebase/firestore';
-import { useLayoutEffect, useState } from 'react';
+// import { collection, query, where, limit, getDocs } from 'firebase/firestore';
+import { getDoc, doc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 const Param = () => {
   const router = useRouter();
-  const param = router.query.param;
-  const [url, setUrl] = useState('');
-  useLayoutEffect(() => {
-    console.warn(param);
-    const docRef = collection(database, 'url');
-    async function getData() {
-      const q = query(docRef, where('param', '==', `${param}`), limit(1));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setUrl(doc.data().url);
-      });
-    }
-    try {
+  const { param } = router.query;
+  const [url, setUrl] = useState('loading');
+
+  // const docRef = collection(database, 'url');
+  // const q = query(docRef, where('param', '==', `${param}`), limit(1));
+
+  // async function getData() {
+  //   const querySnapshot = await getDocs(q);
+  //   querySnapshot.forEach((doc) => {
+  //     // window.open(doc.data().url, '_self');
+  //   });
+  // }
+
+  const docRef = doc(database, 'url', `${param}`);
+  async function getData() {
+    await getDoc(docRef).then((docSnap) => {
+      docSnap.exists()
+        ? window.open(docSnap.data().url, '_self')
+        : setUrl('notexists');
+    });
+  }
+
+  useEffect(() => {
+    if (param) {
       getData();
-    } finally {
-      window.open(url, '_self');
     }
-  });
+  }, [param]);
+
+  useEffect(() => {
+    if (url == 'notexists') {
+      setTimeout(() => {
+        router.replace('/');
+      }, 1500);
+    }
+  }, [url]);
+
   return (
-    <div className=" h-[70vh] w-screen flex justify-center items-center">
-      <button>
-        <Link href={url ? url : '/'} target="_self">
-          {url ? url : 'url not exists'}
-        </Link>
-      </button>
+    <div className=" h-screen flex justify-center items-center ">
+      {url == 'loading' && 'loading...'}
+      {url == 'notexists' && 'broken url'}
     </div>
   );
 };
