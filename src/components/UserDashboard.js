@@ -42,7 +42,7 @@ export default function UserDashboard() {
 
   return (
     <div className="text-lg sm:text-xl h-[70vh] relative justify-center flex flex-col gap-3 sm:gap-5">
-      <div className="flex flex-col w-1/2 m-auto">
+      <div className="flex flex-col sm:w-1/2 m-auto">
         <div className="flex items-center mb-7">
           <div className=" h-8 w-8 sm:h-12 sm:w-12 relative mr-2">
             <Image
@@ -78,7 +78,7 @@ export default function UserDashboard() {
         {successMsg && (
           <div
             id="msg"
-            className="border-2 border-red-700 text-center text-red-700 w-1/2 m-auto mt-6 p-5 "
+            className="border-2 border-red-700 text-center text-red-700 mt-6 p-5 "
           >
             New url copied to clipboard
           </div>

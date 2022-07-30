@@ -16,8 +16,8 @@ export default function Login() {
           {error.message}
         </div>
       )}
-      <div className="flex justify-center items-center">
-        <h1 className=" text-blue-500 text-xl sm:text-3xl inline mr-5 mb-4">
+      <div className="flex flex-col sm:flex-row justify-center items-center">
+        <h1 className=" text-blue-500 text-xl sm:text-3xl inline sm:mr-5 mb-4">
           Sign in with
         </h1>
         <button onClick={submitHandler} className="w-[10rem] inline  ">
