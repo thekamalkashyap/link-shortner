@@ -40,7 +40,4 @@ Using the template? Support this effort by giving a star on GitHub.
 
 # Contribute
 
-Want to contribute? Here are some things to fix
-
-- Firebase take really time to load data (check [here](https://c-url.vercel.app/kamal))
-- After reloading browser tab login screen flashes for some time even after signing in.
+Fell free to open a pull request.

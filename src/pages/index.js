@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       {!currentUser ? <Login /> : <UserDashboard />}
       {loading && (
-        <div className=" z-30 dark:bg-gray-800 fixed top-0 h-screen w-screen text-yellow-500 flex justify-center items-center">
+        <div className=" z-30 dark:bg-gray-800 fixed top-0 left-0 h-screen w-screen text-yellow-500 flex justify-center items-center">
           loading...
         </div>
       )}
